@@ -7,7 +7,7 @@ ira toda la logica que se usara para comunicarme con la api para esta app.
     Pages/ : 
         Home/ :
             home.dart : Pagina de Inicio.
-            Widgets/  : Widgets que se usan en la pagina.
+            Widgets/  : Widgets que se usan en la pagina "Home".
                                 
                                 
                                 
