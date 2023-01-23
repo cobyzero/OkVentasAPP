@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TextoRegistrarse extends StatelessWidget {
-  const TextoRegistrarse({super.key});
+class LoginTextoRegistrarse extends StatelessWidget {
+  const LoginTextoRegistrarse({super.key});
 
   @override
   Widget build(BuildContext context) {

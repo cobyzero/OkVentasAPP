@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TextoContrasenaPerdida extends StatelessWidget {
-  const TextoContrasenaPerdida({super.key});
+class LoginTextoContrasenaPerdida extends StatelessWidget {
+  const LoginTextoContrasenaPerdida({super.key});
 
   @override
   Widget build(BuildContext context) {
