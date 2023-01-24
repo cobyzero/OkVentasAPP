@@ -31,44 +31,75 @@ class _LoginPage extends State<LoginPage> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: MyColors.myBlue,
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Common.space(Common.height(context) * 0.1),
-              Container(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Common.space(Common.height(context) * 0.1),
+            SingleChildScrollView(
+              child: Container(
                 decoration: myBoxDecoration(),
                 width: double.infinity,
                 height: Common.height(context) * 0.9,
                 child: Column(
                   children: [
+                    /**
+                     * ! Common.space(height) es una separacion 
+                     ***********************
+                     *  Logo
+                     * */
                     Common.space(20),
                     const LoginLogo(),
+
+                    /**
+                     * Texto de bienvenida
+                     */
+
                     Common.space(20),
                     const LoginTextoBienvenida(),
+
+                    /**
+                     * TextField del usuario o correo
+                     */
                     Common.space(20),
                     LoginTextFieldUsername(
                         usuarioController: usernameController),
+                    /**
+                     * TextField de la contraseña
+                     */
                     Common.space(20),
                     LoginTextFieldPassword(
                         contrasenaController: passwordController),
-                    LoginTextoContrasenaPerdida(),
+                    /**
+                     * TextButton del texto contraseña olvidada
+                     */
+                    const LoginTextoContrasenaPerdida(),
+
+                    /**
+                     * Boton para iniciar sesion
+                     */
                     Common.space(10),
                     LoginBoton(
                         usuarioController: usernameController,
                         contrasenaController: passwordController),
+                    /**
+                     * Barra de separacion(Solo por estetica)
+                     */
                     Common.space(20),
-                    LoginSeparacion(),
+                    const LoginSeparacion(),
+                    /**
+                     * TextButton para registrarse
+                     */
                     Common.space(10),
-                    LoginTextoRegistrarse()
+                    const LoginTextoRegistrarse()
                   ],
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ));
   }
 
+  ///Decoracion del contenedor principal, solo tiene bordes
   myBoxDecoration() {
     return const BoxDecoration(
       borderRadius: BorderRadius.only(

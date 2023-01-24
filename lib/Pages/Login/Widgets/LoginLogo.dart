@@ -7,8 +7,7 @@ class LoginLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Image(
-      image: AssetImage("assets/logo_inicio.png"),
-      color: MyColors.myBlue,
+      image: AssetImage("assets/logo.png"),
       height: 200,
       width: 370,
       fit: BoxFit.fill,
