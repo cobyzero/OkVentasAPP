@@ -16,5 +16,5 @@ ira toda la logica que se usara para comunicarme con la api para esta app.
     {botonLogin, logo, textField, textoBienvenida, textoContrasenaPerdida, textoO, textoRegistrarse}
                               
 ## Imagen:
-<center><img                src="https://github.com/cobyzero/OkVentasAPP/blob/main/assets/Readme/Login.png?raw=true" width="200"/></center>
-<center><img                src="https://github.com/cobyzero/OkVentasAPP/blob/main/assets/Readme/Home.png?raw=true" width="200"/></center>
+<center><img                src="https://raw.githubusercontent.com/cobyzero/OkVentasAPP/main/assets/Readme/login.png" width="200"/> 
+ <img                src="https://raw.githubusercontent.com/cobyzero/OkVentasAPP/main/assets/Readme/home.png" width="200"/></center>
