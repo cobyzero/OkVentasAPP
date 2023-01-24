@@ -14,7 +14,7 @@ class LoginBoton extends StatelessWidget {
         return ElevatedButton(
           onPressed: (() async {
             if (await API.sendLogin(usuarioController.text, contrasenaController.text) != 0) {
-              Navigator.of(context).pushNamed("/Home",
+              Navigator.of(context).popAndPushNamed("/Home",
                   arguments:
                       await API.sendLogin(usuarioController.text, contrasenaController.text));
             } else {
