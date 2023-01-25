@@ -36,4 +36,17 @@ class API {
     print(response.body);
     return jsonDecode(response.body);
   }
+
+  static Future<List> getCategory() async {
+    Response response;
+
+    Uri uri = Uri.http(url, "/api/users/category/get");
+
+    response = await http.get(uri);
+
+    if (response.statusCode == 404) {
+      return [];
+    }
+    return jsonDecode(response.body);
+  }
 }

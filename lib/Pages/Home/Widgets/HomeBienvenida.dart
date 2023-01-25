@@ -9,7 +9,7 @@ class HomeBienvenida extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, top: 10, bottom: 20),
+      padding: const EdgeInsets.only(left: 20, top: 40, bottom: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -19,7 +19,7 @@ class HomeBienvenida extends StatelessWidget {
               /**
                * Primer texto
                */
-              const Text("Hola ", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+              const Text("Hola ", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
               /**
                * Segundo texto, con FutureBuilder por la API
                */

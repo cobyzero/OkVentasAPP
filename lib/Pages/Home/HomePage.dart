@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:okventasapp/Common/common.dart';
 import 'package:okventasapp/Pages/Home/Widgets/HomeBienvenida.dart';
+import 'package:okventasapp/Pages/Home/Widgets/HomeCategorias.dart';
 import 'package:okventasapp/Pages/Home/Widgets/HomePublicaciones.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,40 +11,39 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: myAppBar(),
-      backgroundColor: Colors.white,
-      body: SafeArea(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          /**
-               * Texto Bienvenida y nombre
-               */
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.grey[300],
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            /**
+             * Texto Bienvenida y nombre
+             */
 
-          HomeBienvenida(
-            id: id,
-          ),
+            HomeBienvenida(
+              id: id,
+            ),
 
-          /**
-               * Items de publicaciones
-               */
-          HomePublicaciones()
-        ],
-      )),
-    );
-  }
+            /**
+             * Categorias
+             */
 
-  AppBar myAppBar() {
-    return AppBar(
-      title: const Text(
-        "Home",
-        style: TextStyle(fontWeight: FontWeight.bold),
+            HomeCategorias(),
+            /**
+             * Items de publicaciones
+             */
+            Padding(
+              padding: const EdgeInsets.only(left: 20, bottom: 20, top: 20),
+              child: Text(
+                "Publicaciones Recientes",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+              ),
+            ),
+            HomePublicaciones()
+          ],
+        ),
       ),
-      backgroundColor: Colors.transparent,
-      shadowColor: Colors.transparent,
-      foregroundColor: Colors.black,
-      centerTitle: true,
     );
   }
 }

@@ -7,12 +7,23 @@ class HomePublicaciones extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(width: 3, color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(15),
+    return Expanded(
+        child: ListView(
+      children: [
+        myItemGeneral(),
+        myItemGeneral(),
+        myItemGeneral(),
+      ],
+    ));
+  }
+
+  Card myItemGeneral() {
+    return Card(
+      elevation: 20,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
       ),
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.only(left: 20, right: 10, top: 0, bottom: 20),
       child: Column(
         children: [myTopPublicacion(), myImagePublicacionPrincipal()],
       ),
@@ -48,10 +59,12 @@ class HomePublicaciones extends StatelessWidget {
       padding: const EdgeInsets.all(13),
       child: Container(
         width: double.infinity,
-        height: 300,
+        height: 200,
         decoration: BoxDecoration(
+            border: Border.all(color: Colors.black, width: 1),
             borderRadius: BorderRadius.circular(20),
-            image: DecorationImage(fit: BoxFit.cover, image: AssetImage("assets/producto.jpg"))),
+            image:
+                const DecorationImage(fit: BoxFit.cover, image: AssetImage("assets/producto.jpg"))),
       ),
     );
   }
