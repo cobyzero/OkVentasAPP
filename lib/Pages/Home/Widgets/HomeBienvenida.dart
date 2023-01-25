@@ -41,11 +41,11 @@ class HomeBienvenida extends StatelessWidget {
 
   myFuture() {
     return FutureBuilder(
-        future: API.getNombre(id),
+        future: API.getCredenciales(id, "name"),
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
             return Text(
-              "${Common.getPrimerNombre(snapshot.data.toString())}!",
+              "${Common.getPrimerNombre(snapshot.data!)}!",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             );
           } else if (snapshot.hasError) {
