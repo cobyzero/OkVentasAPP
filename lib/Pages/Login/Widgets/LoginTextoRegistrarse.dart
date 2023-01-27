@@ -8,8 +8,8 @@ class LoginTextoRegistrarse extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("No eres miembro?"),
-        TextButton(onPressed: (() {}), child: Text("Registrate ahora"))
+        const Text("No eres miembro?"),
+        TextButton(onPressed: (() {}), child: const Text("Registrate ahora"))
       ],
     );
   }

@@ -17,8 +17,41 @@ class LoginBoton extends StatelessWidget {
               Navigator.of(context).popAndPushNamed("/Home",
                   arguments:
                       await API.sendLogin(usuarioController.text, contrasenaController.text));
+            } else if (await API.sendLogin(usuarioController.text, contrasenaController.text) ==
+                0) {
+              // ignore: use_build_context_synchronously
+              showDialog(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text("Datos invalidos"),
+                      actions: [
+                        OutlinedButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text("Aceptar"))
+                      ],
+                    );
+                  });
             } else {
-              print("datos invalidos");
+              // ignore: use_build_context_synchronously
+              showDialog(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text("Error en el servidor"),
+                      actions: [
+                        OutlinedButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text("Aceptar"))
+                      ],
+                    );
+                  });
             }
           }),
           style: ElevatedButton.styleFrom(
