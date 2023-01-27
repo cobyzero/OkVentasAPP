@@ -43,7 +43,7 @@ class _LoginPage extends State<LoginPage> {
                 child: Column(
                   children: [
                     /**
-                     * ! Common.space(height) es una separacion 
+                     * ! Common.space(height) es una separacion
                      ***********************
                      *  Logo
                      * */
@@ -61,12 +61,14 @@ class _LoginPage extends State<LoginPage> {
                      * TextField del usuario o correo
                      */
                     Common.space(20),
-                    LoginTextFieldUsername(usuarioController: usernameController),
+                    LoginTextFieldUsername(
+                        usuarioController: usernameController),
                     /**
                      * TextField de la contraseña
                      */
                     Common.space(20),
-                    LoginTextFieldPassword(contrasenaController: passwordController),
+                    LoginTextFieldPassword(
+                        contrasenaController: passwordController),
                     /**
                      * TextButton del texto contraseña olvidada
                      */
@@ -100,7 +102,8 @@ class _LoginPage extends State<LoginPage> {
   ///Decoracion del contenedor principal, solo tiene bordes
   myBoxDecoration() {
     return const BoxDecoration(
-      borderRadius: BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(40), topRight: Radius.circular(40)),
       color: Colors.white,
     );
   }

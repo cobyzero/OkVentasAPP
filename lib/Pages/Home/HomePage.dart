@@ -33,8 +33,8 @@ class HomePage extends StatelessWidget {
             /**
              * Items de publicaciones
              */
-            Padding(
-              padding: const EdgeInsets.only(left: 20, bottom: 20, top: 20),
+            const Padding(
+              padding: EdgeInsets.only(left: 20, bottom: 20, top: 20),
               child: Text(
                 "Publicaciones Recientes",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),

@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:http/http.dart';
-
 import 'package:http/http.dart' as http;
 
 class API {
@@ -12,7 +10,7 @@ class API {
     int id;
     Uri uri = Uri.http(url, "/api/users/login");
 
-    var json = jsonEncode({"username": username, "password": password});
+    var json = jsonEncode({"usersUsername": username, "usersPassword": password});
 
     response = await http.post(uri, body: json);
 
@@ -20,6 +18,7 @@ class API {
       return 0;
     }
 
+    print(response.body);
     return int.parse(response.body);
   }
 
@@ -49,6 +48,8 @@ class API {
     if (response.statusCode == 404) {
       return [];
     }
+
+    print(response.body);
     return jsonDecode(response.body);
   }
 

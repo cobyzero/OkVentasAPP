@@ -48,7 +48,7 @@ class HomeCategorias extends StatelessWidget {
                       padding: EdgeInsets.all(8.0),
                       child: Image(
                         width: 60,
-                        image: NetworkImage(snapshot.data![index]["imagen"]),
+                        image: NetworkImage(snapshot.data![index]["categoriesImage"]),
                       ),
                     ));
               },

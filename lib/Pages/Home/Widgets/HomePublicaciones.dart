@@ -13,10 +13,14 @@ class HomePublicaciones extends StatelessWidget {
         if (snapshot.hasData) {
           return Expanded(
               child: ListView.builder(
-                  itemCount: 2,
+                  itemCount: snapshot.data!.isEmpty
+                      ? 0
+                      : snapshot.data!.length >= 3
+                          ? 3
+                          : 1,
                   itemBuilder: (context, index) {
-                    return myItemGeneral(snapshot.data![index]["nombre"],
-                        snapshot.data![index]["CredencialesId"], snapshot.data![index]["imagen"]);
+                    return myItemGeneral(snapshot.data![index]["postName"],
+                        snapshot.data![index]["usersId"], snapshot.data![index]["postImage"]);
                   }));
         } else if (snapshot.hasError) {
           return Text("Error data");
@@ -42,7 +46,7 @@ class HomePublicaciones extends StatelessWidget {
 
   myFutureBuilderForImagePerfil(int id) {
     return FutureBuilder(
-      future: API.getCredenciales(id, "foto"),
+      future: API.getCredenciales(id, "usersImage"),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Container(
@@ -74,7 +78,7 @@ class HomePublicaciones extends StatelessWidget {
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             FutureBuilder(
-              future: API.getCredenciales(id, "name"),
+              future: API.getCredenciales(id, "usersName"),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return Text("Error");
@@ -103,8 +107,7 @@ class HomePublicaciones extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all(color: Colors.black, width: 1),
             borderRadius: BorderRadius.circular(20),
-            image:
-                const DecorationImage(fit: BoxFit.cover, image: AssetImage("assets/producto.jpg"))),
+            image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(imagen))),
       ),
     );
   }

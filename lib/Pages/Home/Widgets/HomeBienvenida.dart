@@ -41,7 +41,7 @@ class HomeBienvenida extends StatelessWidget {
 
   myFuture() {
     return FutureBuilder(
-        future: API.getCredenciales(id, "name"),
+        future: API.getCredenciales(id, "usersName"),
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
             return Text(
