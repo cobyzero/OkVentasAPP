@@ -12,38 +12,51 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.grey[300],
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            /**
-             * Texto Bienvenida y nombre
-             */
+        child: Scaffold(
+            backgroundColor: Colors.grey[300],
+            body: Column(
+              children: [
+                /**
+                 * Texto Bienvenida y nombre
+                 */
 
-            HomeBienvenida(
-              id: id,
-            ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 20, bottom: 10),
+                  child: HomeBienvenida(
+                    id: id,
+                  ),
+                ),
+                Expanded(
+                  child: ListView(
+                    children: [
+                      /**
+                   * Categorias
+                   */
 
-            /**
-             * Categorias
-             */
-
-            HomeCategorias(),
-            /**
-             * Items de publicaciones
-             */
-            const Padding(
-              padding: EdgeInsets.only(left: 20, bottom: 20, top: 20),
-              child: Text(
-                "Publicaciones Recientes",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-              ),
-            ),
-            HomePublicaciones()
-          ],
-        ),
-      ),
-    );
+                      HomeCategorias(),
+                      /**
+                   * Items de publicaciones
+                   */
+                      const Padding(
+                        padding: EdgeInsets.only(left: 20, top: 10, bottom: 20),
+                        child: Text(
+                          "Publicaciones Recientes",
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                        ),
+                      ),
+                      SizedBox(width: double.infinity, height: 400, child: HomePublicaciones()),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 20, top: 10, bottom: 20),
+                        child: Text(
+                          "Publicaciones mas populares",
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                        ),
+                      ),
+                      SizedBox(width: double.infinity, height: 400, child: HomePublicaciones()),
+                    ],
+                  ),
+                ),
+              ],
+            )));
   }
 }

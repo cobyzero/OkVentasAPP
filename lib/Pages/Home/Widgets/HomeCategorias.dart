@@ -37,20 +37,24 @@ class HomeCategorias extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return SizedBox(
-            height: 100,
+            height: 60,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: snapshot.data == null ? 0 : snapshot.data!.length,
               itemBuilder: (context, index) {
-                return Card(
-                    elevation: 5,
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Image(
-                        width: 60,
-                        image: NetworkImage(snapshot.data![index]["categoriesImage"]),
-                      ),
-                    ));
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white, borderRadius: BorderRadius.circular(20)),
+                      child: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Image(
+                          width: 50,
+                          image: NetworkImage(snapshot.data![index]["categoriesImage"]),
+                        ),
+                      )),
+                );
               },
             ),
           );

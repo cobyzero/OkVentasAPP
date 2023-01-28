@@ -21,7 +21,9 @@ class _BasePageState extends State<BasePage> {
             ? HomePage(
                 id: id,
               )
-            : AccountPage());
+            : AccountPage(
+                id: id,
+              ));
   }
 
   myNavigationBar() {

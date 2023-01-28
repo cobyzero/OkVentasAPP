@@ -18,7 +18,6 @@ class API {
       return 0;
     }
 
-    print(response.body);
     return int.parse(response.body);
   }
 
@@ -49,7 +48,6 @@ class API {
       return [];
     }
 
-    print(response.body);
     return jsonDecode(response.body);
   }
 
@@ -63,7 +61,7 @@ class API {
     if (response.statusCode == 404) {
       return [];
     }
-    print(response.body);
+
     return jsonDecode(response.body);
   }
 }

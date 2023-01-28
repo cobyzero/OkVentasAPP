@@ -1,9 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:okventasapp/Common/common.dart';
 import 'package:okventasapp/Data/API.dart';
 
 class HomePublicaciones extends StatelessWidget {
-  const HomePublicaciones({super.key});
+  HomePublicaciones({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,104 +12,74 @@ class HomePublicaciones extends StatelessWidget {
       future: API.getPost(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return Expanded(
-              child: ListView.builder(
-                  itemCount: snapshot.data!.isEmpty
-                      ? 0
-                      : snapshot.data!.length >= 3
-                          ? 3
-                          : 1,
-                  itemBuilder: (context, index) {
-                    return myItemGeneral(snapshot.data![index]["postName"],
-                        snapshot.data![index]["usersId"], snapshot.data![index]["postImage"]);
-                  }));
+          return ListView.builder(
+              shrinkWrap: true,
+              physics: ClampingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemCount: snapshot.data!.isEmpty
+                  ? 0
+                  : snapshot.data!.length >= 3
+                      ? 3
+                      : 1,
+              itemBuilder: (context, index) {
+                return myItemGeneral(snapshot.data![index]["postName"],
+                    snapshot.data![index]["usersId"], snapshot.data![index]["postImage"]);
+              });
         } else if (snapshot.hasError) {
-          return Text("Error data");
+          return const Text("Error data");
         } else {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }
       },
     );
   }
 
-  Card myItemGeneral(String titulo, int id, String imagen) {
-    return Card(
-      elevation: 20,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      margin: const EdgeInsets.only(left: 20, right: 10, top: 0, bottom: 20),
-      child: Column(
-        children: [myTopPublicacion(titulo, id), myImagePublicacionPrincipal(imagen)],
-      ),
-    );
-  }
-
-  myFutureBuilderForImagePerfil(int id) {
-    return FutureBuilder(
-      future: API.getCredenciales(id, "usersImage"),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Container(
-            width: 55,
-            height: 55,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.amber,
-                image: DecorationImage(image: NetworkImage(snapshot.data!))),
-          );
-        } else if (snapshot.hasError) {
-          return Text("error data");
-        } else {
-          return Text("...");
-        }
-      },
-    );
-  }
-
-  myTopPublicacion(String titulo, int id) {
-    return Row(
-      children: [
-        Padding(padding: const EdgeInsets.all(13), child: myFutureBuilderForImagePerfil(id)),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              titulo,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            FutureBuilder(
-              future: API.getCredenciales(id, "usersName"),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Text("Error");
-                } else if (snapshot.hasData) {
-                  return Text(
-                    "@" + Common.convertSpace(snapshot.data!),
-                    style: const TextStyle(color: Colors.grey),
-                  );
-                } else {
-                  return Text("...");
-                }
-              },
-            )
-          ],
-        )
-      ],
-    );
-  }
-
-  myImagePublicacionPrincipal(String imagen) {
+  myItemGeneral(String titulo, int id, String imagen) {
     return Padding(
-      padding: const EdgeInsets.all(13),
+      padding: const EdgeInsets.only(top: 10, left: 20, right: 10, bottom: 20),
       child: Container(
-        width: double.infinity,
-        height: 200,
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 1),
-            borderRadius: BorderRadius.circular(20),
-            image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(imagen))),
-      ),
+          decoration: BoxDecoration(
+              color: Colors.amber,
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(imagen))),
+          width: 300,
+          height: 400,
+          child: Stack(
+            alignment: Alignment.bottomLeft,
+            children: [
+              Container(
+                height: 80,
+                width: 300,
+                child: ClipRect(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
+                        color: Colors.black.withOpacity(0.1),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10, bottom: 40),
+                child: Text(
+                  titulo,
+                  style: const TextStyle(
+                      color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 10, bottom: 20),
+                child: Text(
+                  "@Sebastian_Abal_Salazar",
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              )
+            ],
+          )),
     );
   }
 }

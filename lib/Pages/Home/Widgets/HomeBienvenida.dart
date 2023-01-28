@@ -8,33 +8,54 @@ class HomeBienvenida extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            myFutureImagePerson(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /**
+                 * Primer texto
+                */
+                Text("Bienvenido denuevo.. ",
+                    style: TextStyle(fontSize: 15, color: Colors.grey[700])),
+                /**
+                 * Segundo texto, con FutureBuilder por la API
+                */
+                myFuture(),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  myFutureImagePerson() {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, top: 40, bottom: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              /**
-               * Primer texto
-               */
-              const Text("Hola ", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
-              /**
-               * Segundo texto, con FutureBuilder por la API
-               */
-              myFuture(),
-            ],
-          ),
-          /**
-            * Tercer texto de recientes
-            */
-          Common.space(5),
-          Text(
-            "Busca lo que necesites aqui...",
-            style: TextStyle(color: Colors.grey[700]),
-          )
-        ],
+      padding: const EdgeInsets.only(right: 20),
+      child: FutureBuilder(
+        future: API.getCredenciales(id, "usersImage"),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 1),
+                  borderRadius: BorderRadius.circular(60),
+                  image: DecorationImage(image: NetworkImage(snapshot.data!))),
+              width: 60,
+              height: 60,
+            );
+          } else if (snapshot.hasError) {
+            return const Text("Error data");
+          } else {
+            return const CircularProgressIndicator();
+          }
+        },
       ),
     );
   }
